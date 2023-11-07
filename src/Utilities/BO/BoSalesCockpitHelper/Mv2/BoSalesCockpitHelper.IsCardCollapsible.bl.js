@@ -52,6 +52,10 @@ function isCardCollapsible(cardName){
 
 switch (cardName){
 
+  case "CardDisplay": 
+    collapsible = true;
+    break;
+
   case "CardUserWelcome": 
     collapsible = true;
     break;

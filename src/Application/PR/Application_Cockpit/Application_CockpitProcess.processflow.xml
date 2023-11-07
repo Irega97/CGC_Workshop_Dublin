@@ -10,6 +10,9 @@
         <Declaration name="CardActivities_DataLoaded" type="DomBool" />
         <Declaration name="CardActivities_DisplayedSubcomponentName" type="String" />
         <Declaration name="CardActivities_ActivitiesCount" type="LuActivitiesCount" />
+        <!-- Card: Display -->
+        <Declaration name="CardDisplay_DataLoaded" type="DomBool"/>
+        <Declaration name="CardDisplay_SubComponentName" type="String"/>
         <!-- General params-->
         <Declaration name="CardController" type="BoSalesCockpitHelper" />
         <Declaration name="CardDate" type="String" />
@@ -38,6 +41,8 @@
         <Events>
           <!-- Card: User Welcome-->
           <Event name="CardUserWelcome_loadData" action="CardUserWelcome_loadData" />
+          <!-- Card: Display -->
+          <Event name="CardDisplay_loadData" action="CardDisplay_loadData" />
           <!-- Card: Activities -->
           <Event name="CardActivities_loadData" action="CardActivities_LoadActivities" />
           <Event name="CardActivities_ShowAllActivitiesPressed" action="CardActivities_ShowAllActivities" />   
@@ -125,6 +130,22 @@
         <TransitionTo action="ShowCockpit" />
       </Action>
       <!-- Cards: Reload Cockpit END-->
+
+      <!-- Card: Display  START-->
+      <Action name="CardDisplay_loadData" actionType="LOGIC" call="Utils.identity"> 
+        <Parameters>
+          <Input name="value" value="1" type="Literal" />
+        </Parameters>
+        <Return name="ProcessContext::CardDisplay_DataLoaded" />
+        <TransitionTo action="CardDisplay_setSubcomponentName"/>
+      </Action>
+      <Action name="CardDisplay_setSubcomponentName" actionType="LOGIC" call="Utils.identity"> 
+        <Parameters>
+          <Input name="value" value="CardNoDataMessageUiPlugin" type="Literal" />
+        </Parameters>
+        <Return name="ProcessContext::CardDisplay_SubComponentName" />
+      </Action>
+      <!-- Card: Display  END-->
     </Actions>
   </Body>
 </Process>
