@@ -114,7 +114,7 @@
           <Bindings>
             <!-- Title and counter -->
             <Resource target="Title" type="Label" id="DisplayCardTitle" defaultLabel="Displays" />
-            <Resource target="Information" type="Label" id="DisplayCardInfo" defaultLabel="Info / Counter" />
+            <Binding target="Information" type="Text" binding="ProcessContext::CardDisplay_InformationText" bindingMode="ONE_WAY" />
             <!-- Data loaded flag (by setting this card gets rendered) -->
             <Binding target="IsReadyToLoad" type="Text" binding="ProcessContext::CardDisplay_DataLoaded" bindingMode="ONE_WAY" />
             <!-- Subcomponent (e.g. used for no data message) -->
@@ -139,6 +139,34 @@
               <Resource target="infoIcon" type="Image" id="Done" />
             </Bindings>
           </NoDataMessage>
+          <CockpitList name="Display" hasBorder="false" dataSource="ProcessContext::CardDisplay_DisplayList.Items[]">
+            <Items name="Items" itemPattern="CardDisplayItems">
+              <ItemListLayout>
+                <Tablet>
+                  <Default>
+                    <Col width="1em" layoutType="Image" bindingId="Icon" />
+                    <Col flex="1">
+                      <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
+                      <Row layoutType="itemSecondaryCockpit" bindingId="Row_Description" />
+                    </Col>
+                  </Default>
+                </Tablet>
+                <Phone>
+                  <Default>
+                    <Col width="1em" layoutType="Image" bindingId="Icon" />
+                    <Col flex="1">
+                      <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
+                    </Col>
+                  </Default>
+                </Phone>
+              </ItemListLayout>
+              <Bindings>
+                <Binding target="Row_Name" type="Text" binding=".name" bindingMode="ONE_WAY" />
+                <Binding target="Row_Description" type="Text" binding=".description" bindingMode="ONE_WAY" />
+                <Binding target="Icon" type="Image" binding=".iconId" bindingMode="ONE_WAY" />
+              </Bindings>
+            </Items>
+          </CockpitList>
         </CardContainer>
         <!-- Display Card END-->
         <!-- Activities Card START-->
