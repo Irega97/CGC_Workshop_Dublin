@@ -25,16 +25,13 @@
  * -> extends: Base class of the LO, BO, and LU objects that this function belongs to.
  * -> maxRuntime: Maximum time this function is allowed to run, takes integer value in ms. If the max time is exceeded, error is logged.
  * -> returns: Type and variable name in which the return value is stored.
- * @function afterLoadAsync
+ * @function myValidateNameEmpty
  * @this BoMyDisplay
  * @kind businessobject
- * @async
  * @namespace CUSTOM
- * @param {Object} result
- * @param {Object} context
- * @returns promise
+ * @param {messageCollector} messageCollector
  */
-function afterLoadAsync(result, context){
+function myValidateNameEmpty(){
     var me = this;
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                           //
@@ -43,8 +40,13 @@ function afterLoadAsync(result, context){
     ///////////////////////////////////////////////////////////////////////////////////////////////
     
     
-    var promise=when.resolve(result);
-	me.mySetEARights();
+    var newError;
+    if(Utils.isEmptyString(me.getName())){
+    newError = {"level": "error",
+                "objectClass": "BoMyDisplay",
+                "messageID": "DisplayNameEmpty"};
+    messageCollector.add(newError);
+    }
    
   
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,5 +55,5 @@ function afterLoadAsync(result, context){
     //                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    return promise;
+    
 }

@@ -25,16 +25,13 @@
  * -> extends: Base class of the LO, BO, and LU objects that this function belongs to.
  * -> maxRuntime: Maximum time this function is allowed to run, takes integer value in ms. If the max time is exceeded, error is logged.
  * -> returns: Type and variable name in which the return value is stored.
- * @function afterLoadAsync
- * @this BoMyDisplay
- * @kind businessobject
- * @async
+ * @function myAddItem
+ * @this LoMyDisplays
+ * @kind listobject
  * @namespace CUSTOM
- * @param {Object} result
- * @param {Object} context
- * @returns promise
+ * @param {BoMyDisplay} ivan
  */
-function afterLoadAsync(result, context){
+function myAddItem(){
     var me = this;
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                           //
@@ -43,8 +40,18 @@ function afterLoadAsync(result, context){
     ///////////////////////////////////////////////////////////////////////////////////////////////
     
     
-    var promise=when.resolve(result);
-	me.mySetEARights();
+    let iconId='Shelf_Lime';
+    if (Utils.isTrue(ivan.getCompetitorDisplay())) iconId='Shelf_Dark_Orange';
+    var liMyNewDisplay ={
+        pKey: ivan.getPKey(),
+        name: ivan.getName(),
+        description: ivan.getDescription(),
+        competitorDisplay: ivan.getCompetitorDisplay(),
+        type: ivan.getType(),
+        iconId: iconId,
+    }
+    me.addListItems([liMyNewDisplay]);
+    me.setCurrentByPKey(liMyNewDisplay.getPKey());
    
   
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,5 +60,5 @@ function afterLoadAsync(result, context){
     //                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    return promise;
+    
 }
