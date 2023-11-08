@@ -5,5 +5,6 @@
     <SimpleProperty name="description" type="DomLongDescription" dataSourceProperty="description" />
     <SimpleProperty name="competitorDisplay" type="DomBool" dataSourceProperty="competitorDisplay" />
     <SimpleProperty name="iconId" type="DomString" dataSourceProperty="iconId" />
+    <SimpleProperty name="type" type="DomDisplayType" dataSourceProperty="type" />
   </SimpleProperties>
 </ListItem>

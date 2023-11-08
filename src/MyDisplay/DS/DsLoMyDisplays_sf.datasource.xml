@@ -4,6 +4,7 @@
     <Attribute name="name" table="Display__c" column="Name" />
     <Attribute name="description" table="Display__c" column="Description__c" />
     <Attribute name="competitorDisplay" table="Display__c" column="Competitor_Display__c" />
+    <Attribute name="type" table="Display__c" column="Type__c" />
     <DerivedAttribute name="iconId" value="CASE  Competitor_Display__c WHEN '0' THEN 'Shelf_Lime' ELSE 'Shelf_Dark_Orange' END" />
   </Attributes>
   <Entities>
