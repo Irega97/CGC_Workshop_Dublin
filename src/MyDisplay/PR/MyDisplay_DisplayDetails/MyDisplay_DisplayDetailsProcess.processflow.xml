@@ -48,6 +48,7 @@
                     <Event name="itemSelected" action="LoadDisplayDetails" />
                     <Event name="addDisplay" action="LoadDisplayDetails.create" />
                     <Event name="CustomerLookup" action="OpenCustomerNameLookup" />
+                    <Event name="NavigateTo" action="NavigateTo"/>
                 </Events>
             </Action>
             <Action name="LoadDisplayDetails" actionType="MASTER_DETAIL_HANDLER">
@@ -99,6 +100,10 @@
                 <Parameters>
                     <Input name="value" value="ProcessContext::SelectedCustomerPKey" />
                 </Parameters>
+            </Action>
+            <!-- Call the NavigateTo Function if the button is pressed-->
+            <Action name="NavigateTo" actionType="LOGIC" call="ProcessContext::CurrentDisplay.MyNavigateTo">
+                <TransitionTo action="ShowDisplayDetails" />
             </Action>
         </Actions>
     </Body>
