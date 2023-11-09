@@ -57,6 +57,7 @@ var idsOfAccountSalesFolderForSync = [];
 var idsOfOrgUnitSalesFolderForSync = [];
 var idsOfRelevantCustomersFromContracts = [];
 var idsOfRelevantParentAccounts = [];
+var idsOfAccountDisplayForSync = [];
 var userId = Facade.getSfUserId();
 var sqlBulkJsonArray = [];
 var request = new BatchNftRequest();
@@ -128,6 +129,13 @@ var loadCustomerSalesFolder = function (result) {
   idsOfAccountSalesFolderForSync = me.removeLocalIDs(me.getPropertyValuesFromArray(result.AccountsSalesFolderForSync, "BpaMainPKey"));
   if (idsOfAccountSalesFolderForSync.length > 0) {       
     request.addRequest('NFT_Sales_Folder_Account', idsOfAccountSalesFolderForSync);        
+  }
+};
+
+var loadCustomerDisplay = function (result) {
+  idsOfAccountDisplayForSync = me.removeLocalIDs(me.getPropertyValuesFromArray(result.ManagedCustomers, "AccountID"));
+  if (idsOfAccountSalesFolderForSync.length > 0) {
+    request.addRequest('NFT_Display', idsOfAccountDisplayForSync);
   }
 };
 
@@ -251,6 +259,7 @@ if(Utils.isSfBackend()) {
           loadAttachments(result);
           loadRelevantCustomerContract(result);
           loadParentAccounts(result);
+          loadCustomerDisplay(result);
 
           return when.all(promises)
             .then(function() {

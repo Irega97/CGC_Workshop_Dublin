@@ -8,6 +8,8 @@
                 <Declaration name="Description" type="DomLongDescription" />
                 <Declaration name="CompetitorDisplay" type="DomBool" />
                 <Declaration name="Type" type="DomDisplayType" />
+                <Declaration name="isCustomer" type="DomBool" />
+                <Declaration name="SelectedCustomerPKey" type="DomPKey" />
             </Declarations>
             <Parameters>
                 <Input name="DisplayPKey" type="DomPKey" />
@@ -45,6 +47,7 @@
                 <Events>
                     <Event name="itemSelected" action="LoadDisplayDetails" />
                     <Event name="addDisplay" action="LoadDisplayDetails.create" />
+                    <Event name="CustomerLookup" action="OpenCustomerNameLookup" />
                 </Events>
             </Action>
             <Action name="LoadDisplayDetails" actionType="MASTER_DETAIL_HANDLER">
@@ -65,6 +68,37 @@
                     </WizardProcess>
                     </Create>
                 </DetailObject>
+            </Action>
+            <!-- Open a customer lookup to change the assigned Customer-->
+            <Action actionType ="PROCESS" name="OpenCustomerNameLookup" process="Customer::LookupProcess" >
+                <ReturnValues>
+                    <Return name="ProcessContext::CurrentDisplay.customer" value="customerPKey" />
+                </ReturnValues>
+                <TransitionTo action="LoadCustomerLookup" /> 
+            </Action>
+            <Action actionType ="LOAD" name="LoadCustomerLookup" type="LuCustomer" > 
+                <Parameters>
+                    <Input name="pKey" value="ProcessContext::CurrentDisplay.customer" /> 
+                </Parameters>
+                <Return name="ProcessContext::SelectedCustomerPKey" />
+                <TransitionTo action="CheckCustomerSelected" /> 
+            </Action>
+            <Action name="CheckCustomerSelected" actionType="LOGIC" call="Utils.isDefined">
+                <Parameters>
+                  <Input name="value" value="ProcessContext::SelectedCustomerPKey" />
+                </Parameters>
+                <Return name="ProcessContext::isCustomer" />
+                <TransitionTo action="SetCustomer_Decision" />
+            </Action>
+            <Action name="SetCustomer_Decision" actionType="DECISION" parameter="ProcessContext::isCustomer">
+                <Case value="1" action="SetCustomerPKey" />
+                <CaseElse action="SelectItemFromCockpit_Decision" />
+                <CaseEmpty action="SelectItemFromCockpit_Decision" />
+            </Action>
+            <Action name="SetCustomerPKey" actionType="LOGIC" call="ProcessContext::CurrentDisplay.setCustomer">
+                <Parameters>
+                    <Input name="value" value="ProcessContext::SelectedCustomerPKey" />
+                </Parameters>
             </Action>
         </Actions>
     </Body>

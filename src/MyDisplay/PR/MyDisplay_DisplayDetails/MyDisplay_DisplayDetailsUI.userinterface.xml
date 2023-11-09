@@ -66,14 +66,42 @@
                 </GroupedList>
             </Area>
         </Section>
-        <Section sectionName="detailSection" sectionPattern="SingleAreaSection">
+        <Section sectionName="detailSection" sectionPattern="TabbedViewAreaSection">
+            <Area areaName="tabArea" areaPattern="TabElementArea">
+                <TabSelector name="TabSelector">
+                  <Items>
+                    <Tab tabName="detailArea" >
+                      <Bindings>
+                      <Resource target="image" type="Image" id="MainGrey24" defaultImage="MainGrey24" bindingMode="ONE_TIME" />
+                      <Resource target="text" type="Label" id="MainId" defaultLabel="Main" bindingMode="ONE_TIME" />
+                    </Bindings>
+                  </Tab>
+                  <Tab tabName="Attachments" >
+                    <Bindings>
+                      <Resource target="image" type="Image" id="ClipGrey24" defaultImage="ClipGrey24" bindingMode="ONE_TIME" />
+                      <Resource target="text" type="Label" id="AttachmentsId" defaultLabel="Attachments" bindingMode="ONE_TIME" />
+                    </Bindings>
+                  </Tab>
+                  </Items>
+                  <Events/>
+                </TabSelector>
+            </Area>
             <Area areaName="detailArea" areaPattern="GroupedElementsArea">
                 <GroupElement name="Info">
                     <Bindings>
                         <Resource target="Title" type="Label" id="DisplayDetailInfoGroup"
                             defaultLabel="Info" />
                     </Bindings>
-                <InputArea
+                    <Lookup name="Customer">
+                        <Bindings>
+                          <Resource target="Label" type="Label" id="CustomerId" defaultLabel="Customer" />
+                          <Binding target="Value" binding="ProcessContext::CurrentDisplay.luCustomer.name" bindingMode="TWO_WAY" />
+                        </Bindings>
+                        <Events>
+                          <LookupEvent event="CustomerLookup" />
+                        </Events>
+                    </Lookup>
+                    <InputArea
                         name="Name">
                         <Bindings>
                             <Resource target="Label" type="Label" id="DisplayName"
@@ -122,6 +150,16 @@
                         </Bindings>
                     </CheckBox>
                 </GroupElement>
+            </Area>
+            <Area areaName="Attachments" areaPattern="SingleElementArea" lazyLoading="true">
+                <MediaListControl name="DisplayAttachment" dataSource="ProcessContext::CurrentDisplay.loAttachment.Items[]">
+                    <Bindings>
+                      <Binding target="MediaPath" type="Text" binding=".mediaPath" bindingMode="ONE_WAY" />
+                      <Binding target="IsTagged" type="Text" bindingMode="ONE_WAY" />
+                      <Binding target="Description" type="Text" binding=".description" bindingMode="ONE_WAY" />
+                      <Binding target="Type" type="Text" binding=".type" bindingMode="ONE_WAY" />
+                    </Bindings>
+                </MediaListControl>
             </Area>
         </Section>
     </Page>
