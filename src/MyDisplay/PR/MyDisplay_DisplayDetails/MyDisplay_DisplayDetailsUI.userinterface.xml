@@ -2,26 +2,23 @@
     <Page pagePattern="MasterDetailSectionPage" masterSectionFlex="40" detailSectionFlex="60">
         <PageHeader>
             <Bindings>
-                <Resource target="title" type="Label" id="DisplayDetailsTitle"
-                    defaultLabel="Display Details" />
+                <Resource target="title" type="Label" id="DisplayDetailsTitle" defaultLabel="Display Details" />
             </Bindings>
             <MenuItems>
                 <MenuItem directlyVisible="true" itemId="AddDisplay">
-                  <Bindings>
-                    <Resource target="Text" type="Label" id="AddDisplay" defaultLabel="Add Display" />
-                    <Resource target="Icon" type="Image" id="Plus_PB" />
-                  </Bindings>
-                  <Events>
-                    <ButtonPressedEvent event="addDisplay" />
-                  </Events>
+                    <Bindings>
+                        <Resource target="Text" type="Label" id="AddDisplay" defaultLabel="Add Display" />
+                        <Resource target="Icon" type="Image" id="Plus_PB" />
+                    </Bindings>
+                    <Events>
+                        <ButtonPressedEvent event="addDisplay" />
+                    </Events>
                 </MenuItem>
-              </MenuItems>
+            </MenuItems>
         </PageHeader>
         <Section sectionName="masterSection" sectionPattern="SingleAreaSection">
             <Area areaName="mainArea" areaPattern="SingleElementArea">
-                <GroupedList name="displayList" master="true"
-                    dataSource="ProcessContext::DisplayList.items[]" indexBar="true"
-                    searchable="true" groupBy="type">
+                <GroupedList name="displayList" master="true" dataSource="ProcessContext::DisplayList.items[]" indexBar="true" searchable="true" groupBy="type">
                     <Items>
                         <ItemListLayout>
                             <Tablet>
@@ -29,9 +26,7 @@
                                     <Col width="1em" layoutType="Image" bindingId="Icon" />
                                     <Col flex="1">
                                         <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
-                                        <Row
-                                            layoutType="itemSecondaryCockpit"
-                                            bindingId="Row_Description" />
+                                        <Row layoutType="itemSecondaryCockpit" bindingId="Row_Description" />
                                     </Col>
                                 </Default>
                             </Tablet>
@@ -45,12 +40,9 @@
                             </Phone>
                         </ItemListLayout>
                         <Bindings>
-                            <Binding target="Row_Name" type="Text" binding=".name"
-                                bindingMode="ONE_WAY" />
-                            <Binding target="Row_Description" type="Text" binding=".description"
-                                bindingMode="ONE_WAY" />
-                            <Binding target="Icon" type="Image" binding=".iconId"
-                                bindingMode="ONE_WAY" />
+                            <Binding target="Row_Name" type="Text" binding=".name" bindingMode="ONE_WAY" />
+                            <Binding target="Row_Description" type="Text" binding=".description" bindingMode="ONE_WAY" />
+                            <Binding target="Icon" type="Image" binding=".iconId" bindingMode="ONE_WAY" />
                         </Bindings>
                     </Items>
                     <Events>
@@ -89,8 +81,7 @@
             <Area areaName="detailArea" areaPattern="GroupedElementsArea">
                 <GroupElement name="Info">
                     <Bindings>
-                        <Resource target="Title" type="Label" id="DisplayDetailInfoGroup"
-                            defaultLabel="Info" />
+                        <Resource target="Title" type="Label" id="DisplayDetailInfoGroup" defaultLabel="Info" />
                     </Bindings>
                     <Merger name="CustomerMerger" pattern="oneInputControlTwoButtonsMax" leftRatio="80" rightRatio="20" >
                         <Lookup name="Customer">
@@ -112,30 +103,22 @@
                             </Events>
                         </ImageButton>
                     </Merger>
-                    <InputArea
-                        name="Name">
+                    <InputArea name="Name">
                         <Bindings>
-                            <Resource target="Label" type="Label" id="DisplayName"
-                                defaultLabel="Name" />
-                            <Binding target="Value" binding="ProcessContext::CurrentDisplay.name"
-                                bindingMode="TWO_WAY" />
+                            <Resource target="Label" type="Label" id="DisplayName" defaultLabel="Name" />
+                            <Binding target="Value" binding="ProcessContext::CurrentDisplay.name" bindingMode="TWO_WAY" />
                         </Bindings>
                     </InputArea>
-                  <InputAreaMultiLine
-                        name="Description" noOfRows="3">
+                  <InputAreaMultiLine name="Description" noOfRows="3">
                         <Bindings>
-                            <Resource target="Label" type="Label" id="DisplayDescription"
-                                defaultLabel="Description" />
-                            <Binding target="Value"
-                                binding="ProcessContext::CurrentDisplay.description"
-                                bindingMode="TWO_WAY" />
+                            <Resource target="Label" type="Label" id="DisplayDescription" defaultLabel="Description" />
+                            <Binding target="Value" binding="ProcessContext::CurrentDisplay.description" bindingMode="TWO_WAY" />
                         </Bindings>
                     </InputAreaMultiLine>
                 </GroupElement>
                 <GroupElement name="Type">
                     <Bindings>
-                        <Resource target="Title" type="Label" id="DisplayDetailTypeGroup"
-                            defaultLabel="Type" />
+                        <Resource target="Title" type="Label" id="DisplayDetailTypeGroup" defaultLabel="Type" />
                     </Bindings>
                     <SelectionBox name="Type">
                         <Bindings>
@@ -150,14 +133,10 @@
                           </Bindings>
                         </Items>
                       </SelectionBox>
-                    <CheckBox
-                        name="CompetitorDisplay">
+                    <CheckBox name="CompetitorDisplay">
                         <Bindings>
-                            <Resource target="Label" type="Label" id="CompetitorDisplayCB"
-                                defaultLabel="Competitor Display" />
-                            <Binding target="checkedValue"
-                                binding="ProcessContext::CurrentDisplay.competitorDisplay"
-                                bindingMode="TWO_WAY" />
+                            <Resource target="Label" type="Label" id="CompetitorDisplayCB" defaultLabel="Competitor Display" />
+                            <Binding target="checkedValue" binding="ProcessContext::CurrentDisplay.competitorDisplay" bindingMode="TWO_WAY" />
                         </Bindings>
                     </CheckBox>
                 </GroupElement>
