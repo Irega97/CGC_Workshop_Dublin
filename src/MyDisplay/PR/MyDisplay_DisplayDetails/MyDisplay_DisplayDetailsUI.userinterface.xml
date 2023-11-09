@@ -156,8 +156,9 @@
                     <Bindings>
                       <Binding target="MediaPath" type="Text" binding=".mediaPath" bindingMode="ONE_WAY" />
                       <Binding target="IsTagged" type="Text" bindingMode="ONE_WAY" />
-                      <Binding target="Description" type="Text" binding=".description" bindingMode="ONE_WAY" />
+                      <Binding target="Description" type="Text" binding=".fileName" bindingMode="ONE_WAY" />
                       <Binding target="Type" type="Text" binding=".type" bindingMode="ONE_WAY" />
+                      <Binding target="Name" type="Text" binding=".fileName" bindingMode="ONE_WAY" />
                     </Bindings>
                 </MediaListControl>
             </Area>

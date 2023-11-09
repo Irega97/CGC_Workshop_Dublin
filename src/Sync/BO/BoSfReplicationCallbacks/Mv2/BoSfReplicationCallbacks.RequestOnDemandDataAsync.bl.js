@@ -134,7 +134,7 @@ var loadCustomerSalesFolder = function (result) {
 
 var loadCustomerDisplay = function (result) {
   idsOfAccountDisplayForSync = me.removeLocalIDs(me.getPropertyValuesFromArray(result.ManagedCustomers, "AccountID"));
-  if (idsOfAccountSalesFolderForSync.length > 0) {
+  if (idsOfAccountDisplayForSync.length > 0) {
     request.addRequest('NFT_Display', idsOfAccountDisplayForSync);
   }
 };
