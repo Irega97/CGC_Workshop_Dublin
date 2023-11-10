@@ -3029,6 +3029,8 @@
         <Label id="DisplayCardTitle" text="Displays" translationStatus="1"/>
         <Label id="DisplayCardInfo" text="Info / Counter" translationStatus="1"/>
         <Label id="ShowAllDisplaysLink" text="Show all Displays" translationStatus="1"/>
+        <Label id="ReportingDislpayCardTitle" text="Displays" translationStatus="1"/>
+        <Label id="ReportingDisplayCardInformation" text="Competitor&#13;&#10;                  Rate" translationStatus="1"/>
       </UserInterface>
       <UserInterface id="UserNotificationFlyoutUI">
         <Label id="NotificationsTitleId" text="Notification Details" translationStatus="7"/>
@@ -3454,6 +3456,7 @@
         <Label id="MainId" text="Main" translationStatus="1"/>
         <Label id="AttachmentsId" text="Attachments" translationStatus="1"/>
         <Label id="CustomerId" text="Customer" translationStatus="1"/>
+        <Label id="PrintPDF" text="Print PDF" translationStatus="1"/>
       </UserInterface>
     </UserInterfaceContracts>
     <ConfirmationMessages>
@@ -4771,6 +4774,22 @@
         <Label translationStatus="7" id="SumEmptiesLabelId" text="Total Empties"/>
         <Label translationStatus="7" id="TotalPrdId" text="Total Products and Other Items"/>
         <Label translationStatus="7" id="TotalAmountId" text="Total Amount"/>
+      </PrintLayout>
+      <PrintLayout id="MyDisplayPDF">
+        <Label id="CurrentDisplayId" text="Current Display" translationStatus="1"/>
+        <Label id="NameId" text="Name:" translationStatus="1"/>
+        <Label id="CustomerId" text="Customer:" translationStatus="1"/>
+        <Label id="DescriptionId" text="Descirption:" translationStatus="1"/>
+        <Label id="TypeId" text="Type:" translationStatus="1"/>
+        <Label id="CompetitorId" text="Competitor:" translationStatus="1"/>
+        <Label id="OwnDisplaysId" text="Own Displays" translationStatus="1"/>
+        <Label id="OwnDisplayNameId" text="Name" translationStatus="1"/>
+        <Label id="OwnDisplayDescriptionId" text="Description" translationStatus="1"/>
+        <Label id="OwnDisplayCompetitorId" text="Competitor Display" translationStatus="1"/>
+        <Label id="CompetitorDisplaysId" text="Competitor Displays" translationStatus="1"/>
+        <Label id="CompetitorDisplayNameId" text="Name" translationStatus="1"/>
+        <Label id="ComppetitorDisplayDescriptionId" text="Description" translationStatus="1"/>
+        <Label id="ComppetitorDisplayCompetitorId" text="Competitor Display" translationStatus="1"/>
       </PrintLayout>
     </PrintLayouts>
   </Translations>
