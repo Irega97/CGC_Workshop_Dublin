@@ -4,6 +4,7 @@ var BLConstants;
 (function (BLConstants) {
 //Order constants
 BLConstants.Order = {};
+BLConstants.MyDisplay = {};
 
 //Pricing Relevant Constants
 BLConstants.Order.BUTTON_MODE = "4";
@@ -31,6 +32,9 @@ BLConstants.Order.PHASE_VOIDED = "Voided";
 
 //Order Sync Constants
 BLConstants.Order.NOT_SYNCABLE = 3 ;
+
+BLConstants.MyDisplay.DISPLAY_PDF = "MyDisplayPDF";
+
 })(BLConstants || (BLConstants = {}));
 ]]></Code>
 </Plugin>

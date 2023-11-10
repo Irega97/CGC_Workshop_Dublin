@@ -10,6 +10,7 @@
                 <Declaration name="Type" type="DomDisplayType" />
                 <Declaration name="isCustomer" type="DomBool" />
                 <Declaration name="SelectedCustomerPKey" type="DomPKey" />
+                <Declaration name="PrintId" type="String" />
             </Declarations>
             <Parameters>
                 <Input name="DisplayPKey" type="DomPKey" />
@@ -49,6 +50,7 @@
                     <Event name="addDisplay" action="LoadDisplayDetails.create" />
                     <Event name="CustomerLookup" action="OpenCustomerNameLookup" />
                     <Event name="NavigateTo" action="NavigateTo"/>
+                    <Event name="printPDF" action="PrintPDF"/>
                 </Events>
             </Action>
             <Action name="LoadDisplayDetails" actionType="MASTER_DETAIL_HANDLER">
@@ -105,6 +107,24 @@
             <Action name="NavigateTo" actionType="LOGIC" call="ProcessContext::CurrentDisplay.MyNavigateTo">
                 <TransitionTo action="ShowDisplayDetails" />
             </Action>
+
+            <!-- PDF Print -->
+            <Action actionType="LOGIC" name="PrintPDF" call="ProcessContext::CurrentDisplay.MySetDisplayPrintId">
+                <Return name="ProcessContext::PrintId" />
+                <TransitionTo action="previewDocument" />
+            </Action>
+            <Action name="previewDocument" actionType="PRINTV2" printId="ProcessContext::PrintId" locale="ApplicationContext::user.languageSpoken" showShareButton="true">
+                <Parameters>
+                <Input name="currentDisplay" value="ProcessContext::CurrentDisplay" />
+                <Input name="loDisplays" value="ProcessContext::DisplayList" />
+                </Parameters>
+            </Action>
+            <!-- <Action name="previewDocument" actionType="PRINTV2" printId="BLConstants.MyDisplay.DISPLAY_PDF" locale="ApplicationContext::user.languageSpoken" showShareButton="true">
+                <Parameters>
+                <Input name="currentDisplay" value="ProcessContext::CurrentDisplay" />
+                <Input name="loDisplays" value="ProcessContext::DisplayList" />
+                </Parameters>
+            </Action> -->
         </Actions>
     </Body>
 </Process>

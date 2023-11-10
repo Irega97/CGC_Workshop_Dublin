@@ -33,7 +33,7 @@
     <Method name="saveAsync"/>
     <Method name="createAsync"/>
     <Method name="mySetEARights"/>
-  <Method name="myHasLuCustomer"/><Method name="myNavigateTo"/></Methods>
+  <Method name="myHasLuCustomer"/><Method name="myNavigateTo"/><Method name="mySetDisplayPrintId"/></Methods>
   <Validations>
     <Validation name="myValidateNameEmpty"/>
   </Validations>
